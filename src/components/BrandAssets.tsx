@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 interface BrandAssetsProps {
@@ -12,43 +14,31 @@ interface BrandAssetsProps {
 
 export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
   return (
-    <div className="space-y-8 mt-12 pt-8 border-t border-gray-100">
-      <section className="bg-amber-50 p-6 rounded-2xl">
-        <h3 className="text-amber-900 font-bold mb-3 flex items-center gap-2">
-          <span className="text-xl">⚠️</span> 注意事項
-        </h3>
-        <p className="text-amber-800 text-sm whitespace-pre-wrap leading-relaxed">
+    <div className="space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+      {/* Promotion Card */}
+      <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#F1F1F1] flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="flex items-start gap-4">
+          <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0" />
+          <div>
+            <h3 className="font-playfair text-xl tracking-wide mb-2">Exclusive Reward</h3>
+            <p className="text-sub text-sm leading-relaxed max-w-md">
+              {config.RewardText}
+            </p>
+          </div>
+        </div>
+        <div className="flex gap-6 text-xs font-medium shrink-0">
+          <a href={config.InstagramUrl} target="_blank" className="text-blue-600 underline underline-offset-4">Instagram</a>
+          <a href={config.HPUrl} target="_blank" className="text-blue-600 underline underline-offset-4">Official HP</a>
+        </div>
+      </section>
+
+      {/* Caution Box */}
+      <section className="bg-[#F8F8F8] p-6 rounded-lg">
+        <div className="text-[10px] text-sub uppercase tracking-widest mb-3 font-bold">Important Notice</div>
+        <p className="text-xs text-sub leading-loose whitespace-pre-wrap">
           {config.NoticeText}
         </p>
       </section>
-
-      <section className="bg-indigo-50 p-6 rounded-2xl">
-        <h3 className="text-indigo-900 font-bold mb-3 flex items-center gap-2">
-          <span className="text-xl">🎁</span> 予約特典
-        </h3>
-        <p className="text-indigo-800 text-sm whitespace-pre-wrap leading-relaxed">
-          {config.RewardText}
-        </p>
-      </section>
-
-      <footer className="flex justify-center gap-6 mt-12 pb-8">
-        <a 
-          href={config.InstagramUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-gray-500 hover:text-pink-600 transition-colors"
-        >
-          Instagram
-        </a>
-        <a 
-          href={config.HPUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-gray-500 hover:text-black transition-colors"
-        >
-          Official HP
-        </a>
-      </footer>
     </div>
   );
 };

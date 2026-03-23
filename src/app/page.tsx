@@ -26,23 +26,34 @@ export default function ReservationPage() {
     time: ''
   });
 
-  // Initial load
   useEffect(() => {
-    // In a real app, you might fetch initial dates from a default endpoint
-    // For now, we'll hardcode the dates or get them from the first slot fetch
-    fetchSlots('2024-04-20'); // Initial date
+    // Initial fetch to get config and dates
+    loadInitialData();
   }, []);
 
-  const fetchSlots = async (date: string) => {
+  const loadInitialData = async () => {
+    try {
+      // We'll just fetch a default date initially to get the config
+      const data = await getSlots('2024-04-20');
+      setConfig(data.config);
+      if (data.config && data.config.Dates) {
+        const dateList = data.config.Dates.split(',').map(d => d.trim());
+        setDates(dateList);
+        // Initially load slots for the first date
+        fetchSlots(dateList[0], data.config);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchSlots = async (date: string, currentConfig?: Config) => {
     setIsLoadingSlots(true);
+    setSelectedDate(date);
     try {
       const data = await getSlots(date);
       setSlots(data.slots);
-      setConfig(data.config);
-      if (data.config && data.config.Dates) {
-        setDates(data.config.Dates.split(',').map(d => d.trim()));
-      }
-      setSelectedDate(date);
+      if (!currentConfig && data.config) setConfig(data.config);
     } catch (error) {
       console.error(error);
     } finally {
@@ -50,9 +61,12 @@ export default function ReservationPage() {
     }
   };
 
-  const handleSelectSlot = (time: string) => {
+  const handleSelectSlot = (time: string, isAvailable: boolean) => {
+    if (!isAvailable) return;
     setFormData({ ...formData, time });
     setStep(2);
+    // Smooth scroll to top when changing steps
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSubmit = async () => {
@@ -65,6 +79,7 @@ export default function ReservationPage() {
 
       if (result.success) {
         setStep(3);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (result.error === 'Slot already taken') {
         showToast('直前で埋まりました');
       } else {
@@ -83,75 +98,67 @@ export default function ReservationPage() {
   };
 
   return (
-    <main className="min-h-screen p-6 md:p-12 max-w-2xl mx-auto">
+    <main className="min-h-screen bg-[#FDFDFB] text-[#1A1A1A] font-sans px-6 md:px-12 py-10 md:py-20 animate-fade-in">
       {/* Toast Notification */}
       {toast && (
-        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-top-4">
-          <div className="bg-red-600 text-white px-8 py-4 rounded-2xl shadow-2xl font-bold">
+        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+          <div className="bg-[#1A1A1A] text-white px-10 py-4 rounded-full shadow-2xl font-bold tracking-widest text-xs">
             {toast}
           </div>
         </div>
       )}
 
-      {/* Header */}
-      <header className="text-center mb-12">
-        <div className="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-600 text-xs font-black tracking-widest uppercase mb-4">
-          Workshop 2024
-        </div>
-        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 mb-4">
-          {config?.EventName || 'ワークショップ予約'}
-        </h1>
-        <div className="h-1.5 w-20 bg-black mx-auto rounded-full" />
-      </header>
+      <div className="max-w-4xl mx-auto space-y-24">
+        {/* Header / Hero */}
+        <header className="text-center space-y-8 pb-12 border-b border-[#F1F1F1]">
+          <div>
+            <h1 className="font-playfair text-4xl md:text-5xl tracking-widest-extra uppercase mb-6 animate-fade-in">
+              SEW THE SOUND
+            </h1>
+            <p className="font-noto text-sm tracking-[0.2em] text-[#666666] leading-relaxed">
+              録音した声を、刺繍に変える。
+            </p>
+          </div>
+          <div className="w-px h-12 bg-[#E1E1E1] mx-auto" />
+        </header>
 
-      {/* Progress Bar */}
-      {step < 3 && (
-        <div className="flex gap-2 mb-12">
-          {[1, 2].map(s => (
-            <div 
-              key={s} 
-              className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${step >= s ? 'bg-black' : 'bg-gray-200'}`} 
+        {/* Content Area */}
+        <div className="space-y-24">
+          {step === 1 && (
+            <>
+              <ReservationStep1
+                dates={dates}
+                selectedDate={selectedDate}
+                setSelectedDate={(d) => fetchSlots(d)}
+                slots={slots}
+                onSelectSlot={handleSelectSlot}
+                isLoading={isLoadingSlots}
+              />
+              {config && <BrandAssets config={config} />}
+            </>
+          )}
+
+          {step === 2 && (
+            <ReservationStep2
+              formData={formData}
+              setFormData={setFormData}
+              onPrev={() => setStep(1)}
+              onSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
             />
-          ))}
+          )}
+
+          {step === 3 && (
+            <ReservationStep3
+              email={formData.email}
+              onReset={() => {
+                setStep(1);
+                fetchSlots(selectedDate);
+              }}
+            />
+          )}
         </div>
-      )}
-
-      {/* Steps */}
-      <div className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
-        {step === 1 && (
-          <ReservationStep1
-            dates={dates}
-            selectedDate={selectedDate}
-            setSelectedDate={fetchSlots}
-            slots={slots}
-            onSelectSlot={handleSelectSlot}
-            isLoading={isLoadingSlots}
-          />
-        )}
-
-        {step === 2 && (
-          <ReservationStep2
-            formData={formData}
-            setFormData={setFormData}
-            onPrev={() => setStep(1)}
-            onSubmit={handleSubmit}
-            isSubmitting={isSubmitting}
-          />
-        )}
-
-        {step === 3 && (
-          <ReservationStep3
-            email={formData.email}
-            onReset={() => {
-              setStep(1);
-              fetchSlots(selectedDate);
-            }}
-          />
-        )}
       </div>
-
-      {/* Brand Assets */}
-      {config && <BrandAssets config={config} />}
     </main>
   );
 }

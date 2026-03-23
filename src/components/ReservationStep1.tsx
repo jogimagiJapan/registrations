@@ -8,7 +8,7 @@ interface Step1Props {
   selectedDate: string;
   setSelectedDate: (date: string) => void;
   slots: Slot[];
-  onSelectSlot: (time: string) => void;
+  onSelectSlot: (time: string, isAvailable: boolean) => void;
   isLoading: boolean;
 }
 
@@ -21,54 +21,52 @@ export const ReservationStep1: React.FC<Step1Props> = ({
   isLoading
 }) => {
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div>
-        <label className="block text-sm font-medium text-gray-500 mb-3">開催日を選択</label>
-        <div className="flex gap-3 overflow-x-auto pb-2">
+    <div className="space-y-12 animate-fade-in">
+      <div className="space-y-6">
+        <h3 className="font-playfair text-3xl tracking-wide text-main">Select Date & Time</h3>
+        
+        {/* Minimal Tabs */}
+        <div className="flex gap-8 border-b border-[#F1F1F1]">
           {dates.map(date => (
             <button
               key={date}
               onClick={() => setSelectedDate(date)}
-              className={`px-6 py-3 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`pb-4 text-sm font-medium transition-all relative ${
                 selectedDate === date 
-                ? 'bg-black text-white shadow-lg scale-105' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'text-main' 
+                : 'text-sub hover:text-main'
               }`}
             >
               {date}
+              {selectedDate === date && (
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-main" />
+              )}
             </button>
           ))}
         </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-500 mb-3">時間を選択 (1時間枠)</label>
+      {/* Time Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {isLoading ? (
-          <div className="grid grid-cols-2 gap-3">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="h-16 bg-gray-100 animate-pulse rounded-xl" />
-            ))}
-          </div>
+          [...Array(8)].map((_, i) => (
+            <div key={i} className="h-20 bg-gray-50 animate-pulse rounded-lg" />
+          ))
         ) : (
-          <div className="grid grid-cols-2 gap-3">
-            {slots.map(slot => (
-              <button
-                key={slot.time}
-                disabled={!slot.available}
-                onClick={() => onSelectSlot(slot.time)}
-                className={`flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all ${
-                  slot.available
-                    ? 'border-indigo-100 bg-white hover:border-indigo-500 hover:shadow-md cursor-pointer'
-                    : 'border-gray-100 bg-gray-50 opacity-60 cursor-not-allowed'
-                }`}
-              >
-                <span className="text-lg font-bold">{slot.time}</span>
-                <span className={`text-xs mt-1 ${slot.available ? 'text-indigo-600' : 'text-gray-400'}`}>
-                  {slot.available ? '◎ 予約可能' : '当日枠あり'}
-                </span>
-              </button>
-            ))}
-          </div>
+          slots.map(slot => (
+            <button
+              key={slot.time}
+              onClick={() => onSelectSlot(slot.time, slot.available)}
+              className={`flex flex-col items-center justify-center p-6 border transition-all duration-300 ${
+                slot.available
+                  ? 'border-[#E5E5E5] bg-transparent hover:bg-[#1A1A1A] hover:text-white cursor-pointer'
+                  : 'bg-[#F1F1F1] border-transparent text-sub cursor-not-allowed'
+              }`}
+            >
+              <span className="text-xl font-medium mb-1">{slot.time}</span>
+              <span className="text-xs font-bold tracking-widest">{slot.available ? '◎' : '当日'}</span>
+            </button>
+          ))
         )}
       </div>
     </div>

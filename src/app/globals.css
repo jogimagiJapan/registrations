@@ -1,49 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-main: #1A1A1A;
+  --color-sub: #666666;
+  --color-rose: #C88888;
+  --color-border-main: #E5E5E5;
+  --color-bg-creme: #FDFDFB;
+  
+  --font-playfair: var(--font-playfair), serif;
+  --font-noto: var(--font-noto), sans-serif;
+}
 
 :root {
-  --background: #fdfdfd;
-  --foreground: #1a1a1a;
+  --background: #FDFDFB;
+  --foreground: #1A1A1A;
 }
 
 body {
-  background: radial-gradient(circle at top right, #f8fafc, #f1f5f9);
-  min-height: 100vh;
+  background-color: var(--color-bg-creme);
+  color: var(--color-main);
+  font-family: var(--font-noto), sans-serif;
+  letter-spacing: 0.02em;
+  font-feature-settings: "palt";
 }
 
-/* Custom Utilities */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+h1, h2, h3, .font-playfair {
+  font-family: var(--font-playfair), serif;
+  font-weight: 400;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+@utility underline-input {
+  width: 100%;
+  background-color: transparent;
+  border-bottom-width: 1px;
+  border-color: var(--color-border-main);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-duration: 300ms;
+  
+  &:focus {
+    border-color: var(--color-main);
+    outline: none;
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+.tracking-widest-extra {
+  letter-spacing: 0.25em;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
-  border-radius: 10px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
-}
-
-/* Animations */
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
