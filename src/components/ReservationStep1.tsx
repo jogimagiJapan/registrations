@@ -23,7 +23,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
   return (
     <div className="space-y-12 animate-fade-in">
       <div className="space-y-6">
-        <h3 className="font-playfair text-3xl tracking-wide text-main">Select Date & Time</h3>
+        <h3 className="text-2xl font-bold tracking-widest text-main uppercase">Select Date & Time</h3>
         
         {/* Minimal Tabs */}
         <div className="flex gap-8 border-b border-[#F1F1F1]">

@@ -41,8 +41,8 @@ export const ReservationStep2: React.FC<Step2Props> = ({
   return (
     <div className="space-y-12 animate-fade-in">
       <div className="flex justify-between items-baseline border-b border-[#F1F1F1] pb-6">
-        <h3 className="font-playfair text-3xl tracking-wide">Reservation Details</h3>
-        <span className="text-sm font-playfair italic text-sub">{formData.time} Slot</span>
+        <h3 className="text-2xl font-bold tracking-widest uppercase">Reservation Details</h3>
+        <span className="text-sm font-bold italic text-sub">{formData.time} Slot</span>
       </div>
 
       <form onSubmit={(e) => { e.preventDefault(); if(!emailError) onSubmit(); }} className="space-y-10">

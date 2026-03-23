@@ -112,7 +112,7 @@ export default function ReservationPage() {
         {/* Header / Hero */}
         <header className="text-center space-y-8 pb-12 border-b border-[#F1F1F1]">
           <div>
-            <h1 className="font-playfair text-4xl md:text-5xl tracking-widest-extra uppercase mb-6 animate-fade-in">
+            <h1 className="text-3xl md:text-4xl tracking-widest-extra uppercase mb-6 animate-fade-in font-bold">
               SEW THE SOUND
             </h1>
             <p className="font-noto text-sm tracking-[0.2em] text-[#666666] leading-relaxed">

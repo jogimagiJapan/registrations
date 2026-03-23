@@ -10,7 +10,7 @@ interface Step3Props {
 export const ReservationStep3: React.FC<Step3Props> = ({ onReset, email }) => {
   return (
     <div className="text-center py-20 space-y-8 animate-fade-in">
-      <h2 className="font-playfair text-4xl tracking-widest text-main mb-4">Reserved.</h2>
+      <h2 className="text-3xl font-bold tracking-widest text-main mb-4 uppercase">Reserved.</h2>
       <div className="h-px w-12 bg-main mx-auto mb-8" />
       <div className="space-y-4 max-w-sm mx-auto">
         <p className="font-noto text-sm leading-relaxed text-sub">

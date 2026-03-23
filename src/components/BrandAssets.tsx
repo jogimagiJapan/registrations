@@ -20,7 +20,7 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
         <div className="flex items-start gap-4">
           <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0" />
           <div>
-            <h3 className="font-playfair text-xl tracking-wide mb-2">Exclusive Reward</h3>
+            <h3 className="text-lg font-bold tracking-wide mb-2 uppercase">Exclusive Reward</h3>
             <p className="text-sub text-sm leading-relaxed max-w-md">
               {config.RewardText}
             </p>
