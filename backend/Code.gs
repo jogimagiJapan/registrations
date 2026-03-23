@@ -223,7 +223,7 @@ function reserveSlots(data) {
   }
   
   // Perform reservation
-  const timestamp = new Date();
+  const timestamp = Utilities.formatDate(new Date(), TIMEZONE, "yyyy-MM-dd HH:mm:ss");
   for (let i = 0; i < slotsNeeded; i++) {
     const sheetRowIndex = startIndex + i + 2; // +1 for header, +1 for 1-based index
     sheet.getRange(sheetRowIndex, 2, 1, 6).setValues([[

@@ -27,7 +27,7 @@
     ```
 4.  **Deployment**:
     -   Push to GitHub and connect to Vercel.
-    -   **CRITICAL**: Set the Environment Variable `TZ=Asia/Tokyo` in the Vercel dashboard.
+    -   **Environment Variables**: Set `NEXT_PUBLIC_GAS_API_URL` and `GAS_API_KEY`.
 
 ## Verification Checklist
 - [ ] **1名予約**: スロットが1つ（20分）埋まることを確認。
