@@ -27,6 +27,7 @@ function initConfig() {
     ["Key", "Value"],
     ["ApiKey", "your-secret-key"],
     ["EventName", "ワークショップ 2024"],
+    ["SubTitle", "拠点：SHIBUYA MIYASHITA PARK"],
     ["Dates", "2024-04-20, 2024-04-21"],
     ["AdminEmail", "admin@example.com"],
     ["EmailTemplateUser", "{{name}}様、予約ありがとうございます。\n日時：{{date}} {{time}}\n人数：{{people}}名\nアイテム：{{item}}"],
@@ -172,9 +173,7 @@ function getHourlySlots(dateStr) {
   const sheet = ss.getSheetByName(dateStr);
   if (!sheet) return [];
   
-  const data = sheet.getDataRange().getValues();
-  // Time, Status, Name...
-  // Skip header
+  const data = sheet.getDataRange().getDisplayValues(); // Use getDisplayValues to get "HH:mm" as string
   const rows = data.slice(1);
   const hourlySlots = [];
   
@@ -183,12 +182,26 @@ function getHourlySlots(dateStr) {
     if (hourData.length === 0) break;
     
     const time = hourData[0][0]; // Initial slot time (e.g. 12:00)
-    // Check if ALL 3 slots are "Available"
-    const isAvailable = hourData.every(row => row[1] === "Available");
+    const availableSlots = hourData.filter(row => row[1] === "Available").length;
+    
+    let statusText = "◎";
+    let available = false;
+    
+    if (availableSlots === SLOTS_PER_HOUR) {
+      statusText = "◎";
+      available = true;
+    } else if (availableSlots > 0) {
+      statusText = "当日枠あり（選択不可）";
+      available = false;
+    } else {
+      statusText = "受付終了";
+      available = false;
+    }
     
     hourlySlots.push({
       time: time,
-      available: isAvailable
+      available: available,
+      statusText: statusText
     });
   }
   
@@ -203,21 +216,23 @@ function reserveSlots(data) {
   const sheet = ss.getSheetByName(data.date);
   if (!sheet) return { success: false, error: "Date not found" };
   
-  const values = sheet.getDataRange().getValues();
-  const rows = values.slice(1);
+  const displayValues = sheet.getDataRange().getDisplayValues();
+  const rows = displayValues.slice(1);
   
   // Find index of the starting slot
-  const startIndex = rows.findIndex(row => row[0] === data.time);
+  const startIndex = rows.findIndex(row => row[0].trim() === data.time.trim());
   if (startIndex === -1) return { success: false, error: "Invalid time slot" };
+  
+  const actualValues = sheet.getDataRange().getValues().slice(1);
   
   // Check if requested slots are available
   const peopleCount = parseInt(data.peopleCount);
-  const slotsNeeded = peopleCount; // 1 person = 1 slot, 2 = 2, 3 = 3
+  const slotsNeeded = peopleCount; 
   
   // Verify availability
   for (let i = 0; i < slotsNeeded; i++) {
     const rowIndex = startIndex + i;
-    if (rowIndex >= rows.length || rows[rowIndex][1] !== "Available") {
+    if (rowIndex >= actualValues.length || actualValues[rowIndex][1] !== "Available") {
       return { success: false, error: "Slot already taken" };
     }
   }

@@ -81,9 +81,9 @@ export default function ReservationPage() {
         setStep(3);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (result.error === 'Slot already taken') {
-        showToast('直前で埋まりました');
+        showToast('ご指定いただいた日時は直前で埋まってしまいました。お手数ですが別の日時をお選びださい。');
       } else {
-        showToast('エラーが発生しました');
+        showToast('エラーが発生しました。時間を置いて再度お試しください。');
       }
     } catch (error) {
       showToast('通信エラーが発生しました');
@@ -112,11 +112,11 @@ export default function ReservationPage() {
         {/* Header / Hero */}
         <header className="text-center space-y-8 pb-12 border-b border-[#F1F1F1]">
           <div>
-            <h1 className="text-3xl md:text-4xl tracking-widest-extra uppercase mb-6 animate-fade-in font-bold">
-              SEW THE SOUND
+            <h1 className="text-3xl md:text-4xl tracking-widest-extra uppercase mb-4 animate-fade-in font-bold">
+              {config?.EventName || "SEW THE SOUND"}
             </h1>
             <p className="font-noto text-sm tracking-[0.2em] text-[#666666] leading-relaxed">
-              録音した声を、刺繍に変える。
+              {config?.SubTitle || "録音した声を、刺繍に変える。"}
             </p>
           </div>
           <div className="w-px h-12 bg-[#E1E1E1] mx-auto" />

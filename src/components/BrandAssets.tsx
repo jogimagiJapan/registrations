@@ -14,28 +14,56 @@ interface BrandAssetsProps {
 
 export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
   return (
-    <div className="space-y-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+    <div className="space-y-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
       {/* Promotion Card */}
-      <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#F1F1F1] flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#F1F1F1] space-y-6">
         <div className="flex items-start gap-4">
           <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0" />
           <div>
             <h3 className="text-lg font-bold tracking-wide mb-2 uppercase">予約特典</h3>
-            <p className="text-sub text-sm leading-relaxed max-w-md">
+            <p className="text-sub text-sm leading-relaxed max-w-2xl">
               {config.RewardText}
             </p>
           </div>
         </div>
-        <div className="flex gap-6 text-xs font-medium shrink-0">
-          <a href={config.InstagramUrl} target="_blank" className="text-blue-600 underline underline-offset-4">Instagram</a>
-          <a href={config.HPUrl} target="_blank" className="text-blue-600 underline underline-offset-4">Official HP</a>
-        </div>
+      </section>
+
+      {/* Social Cards */}
+      <section className="grid md:grid-cols-2 gap-6">
+        <a 
+          href={config.InstagramUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="group bg-white p-8 rounded-2xl border border-[#F1F1F1] hover:border-[#1A1A1A] transition-all duration-500 flex items-center justify-between"
+        >
+          <div className="space-y-1">
+            <div className="text-[10px] text-sub uppercase tracking-widest font-bold">Follow us</div>
+            <div className="text-lg font-bold">Instagram</div>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#F8F8F8] flex items-center justify-center group-hover:bg-[#1A1A1A] group-hover:text-white transition-colors">
+            <span className="text-xl">↗</span>
+          </div>
+        </a>
+        <a 
+          href={config.HPUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="group bg-white p-8 rounded-2xl border border-[#F1F1F1] hover:border-[#1A1A1A] transition-all duration-500 flex items-center justify-between"
+        >
+          <div className="space-y-1">
+            <div className="text-[10px] text-sub uppercase tracking-widest font-bold">Official Site</div>
+            <div className="text-lg font-bold">SEW THE SOUND</div>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#F8F8F8] flex items-center justify-center group-hover:bg-[#1A1A1A] group-hover:text-white transition-colors">
+            <span className="text-xl">↗</span>
+          </div>
+        </a>
       </section>
 
       {/* Caution Box */}
-      <section className="bg-[#F8F8F8] p-6 rounded-lg">
-        <div className="text-[10px] text-sub uppercase tracking-widest mb-3 font-bold">注意事項</div>
-        <p className="text-xs text-sub leading-loose whitespace-pre-wrap">
+      <section className="bg-transparent border-t border-[#F1F1F1] pt-12">
+        <div className="text-[10px] text-sub uppercase tracking-widest mb-4 font-bold">注意事項</div>
+        <p className="text-xs text-sub leading-loose whitespace-pre-wrap max-w-3xl">
           {config.NoticeText}
         </p>
       </section>

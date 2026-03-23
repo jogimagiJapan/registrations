@@ -47,13 +47,18 @@ export const ReservationStep1: React.FC<Step1Props> = ({
       </div>
 
       {/* Time Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {isLoading ? (
-          [...Array(8)].map((_, i) => (
-            <div key={i} className="h-20 bg-gray-50 animate-pulse rounded-lg" />
-          ))
-        ) : (
-          slots.map(slot => (
+      <div className="relative min-h-[400px]">
+        {isLoading && (
+          <div className="absolute inset-0 bg-[#FDFDFB]/80 z-10 flex items-center justify-center backdrop-blur-sm animate-fade-in">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-8 h-8 border-2 border-[#1A1A1A]/20 border-t-[#1A1A1A] rounded-full animate-spin" />
+              <p className="text-[10px] tracking-[0.3em] font-bold text-main uppercase">取得中...</p>
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {slots.map(slot => (
             <button
               key={slot.time}
               disabled={!slot.available}
@@ -61,14 +66,16 @@ export const ReservationStep1: React.FC<Step1Props> = ({
               className={`flex flex-col items-center justify-center p-6 border transition-all duration-300 ${
                 slot.available
                   ? 'border-[#E5E5E5] bg-transparent hover:bg-[#1A1A1A] hover:text-white cursor-pointer'
-                  : 'bg-[#F1F1F1] border-transparent text-sub cursor-not-allowed'
+                  : 'bg-[#F1F1F1] border-transparent text-sub cursor-not-allowed opacity-60'
               }`}
             >
               <span className="text-xl font-medium mb-1">{slot.time}</span>
-              <span className="text-xs font-bold tracking-widest">{slot.available ? '◎' : '当日枠あり（選択不可）'}</span>
+              <span className="text-[10px] font-bold tracking-widest leading-none">
+                {slot.statusText || (slot.available ? '◎' : '当日枠あり（選択不可）')}
+              </span>
             </button>
-          ))
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );
