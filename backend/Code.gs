@@ -11,6 +11,51 @@ const START_HOUR = 12;
 const END_HOUR = 19;
 
 /**
+ * ONE-CLICK SETUP:
+ * 1. Run initConfig() - Creates the Config sheet with default values.
+ * 2. Edit Config sheet (Dates, ApiKey, etc.)
+ * 3. Run autoSetup() - Automatically creates sheets for all dates listed in Config.
+ */
+
+function initConfig() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(CONFIG_SHEET_NAME);
+  if (sheet) return "Config sheet already exists";
+  
+  sheet = ss.insertSheet(CONFIG_SHEET_NAME);
+  const defaults = [
+    ["Key", "Value"],
+    ["ApiKey", "your-secret-key"],
+    ["EventName", "ワークショップ 2024"],
+    ["Dates", "2024-04-20, 2024-04-21"],
+    ["AdminEmail", "admin@example.com"],
+    ["EmailTemplateUser", "{{name}}様、予約ありがとうございます。\n日時：{{date}} {{time}}\n人数：{{people}}名\nアイテム：{{item}}"],
+    ["NoticeText", "当日は開始10分前にお越しください。"],
+    ["RewardText", "参加者にはオリジナルステッカーをプレゼント！"],
+    ["InstagramUrl", "https://instagram.com/"],
+    ["HPUrl", "https://example.com/"]
+  ];
+  sheet.getRange(1, 1, defaults.length, 2).setValues(defaults);
+  sheet.getRange(1, 1, 1, 2).setBackground("#f3f3f3").setFontWeight("bold");
+  return "Config sheet created. Please edit it and then run autoSetup().";
+}
+
+function autoSetup() {
+  const config = getConfig();
+  if (!config.Dates) return "No dates found in Config sheet.";
+  
+  const dates = config.Dates.split(",").map(d => d.trim());
+  const results = [];
+  
+  dates.forEach(date => {
+    const res = initEventSheet(date);
+    results.push(res);
+  });
+  
+  return results.join("\n");
+}
+
+/**
  * Endpoint for GET requests.
  * Query Parameters:
  * - apiKey: string

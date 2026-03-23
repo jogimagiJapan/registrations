@@ -1,23 +1,13 @@
-# Workshop Reservation System Setup Guide
-
 ## 1. Google Sheets & GAS Setup
 
 1.  **Create a New Spreadsheet**: Name it (e.g., `Workshop Reservations`).
-2.  **Create "Config" Sheet**: Add the following headers and values in column A and B:
-    -   `ApiKey`: your-secret-key
-    -   `EventName`: ワークショップ 2024
-    -   `Dates`: 2024-04-20, 2024-04-21
-    -   `AdminEmail`: admin@example.com
-    -   `EmailTemplateUser`: {{name}}様、予約ありがとうございます...
-    -   `NoticeText`: 当日は開始10分前にお越しください...
-    -   `RewardText`: 参加者にはオリジナルステッカーをプレゼント！
-    -   `InstagramUrl`: https://instagram.com/...
-    -   `HPUrl`: https://example.com
-3.  **Open Script Editor**: Extensions > Apps Script.
-4.  **Copy Code**: Copy the contents of `backend/Code.gs` into the editor.
-5.  **Initialize Event Sheets**:
-    -   In the Apps Script editor, run the `initEventSheet("2024-04-20")` function manually to create the sheet for that date.
-6.  **Deploy as Web App**:
+2.  **Open Script Editor**: Extensions > Apps Script.
+3.  **Copy Code**: Copy the contents of `backend/Code.gs` into the editor.
+4.  **One-Click Setup**:
+    -   Apps Scriptエディタで **`initConfig`** を選択して実行。
+    -   スプレッドシートに戻り、新しくできた **「Config」** シートを編集（日付やApiKeyなど）。
+    -   エディタに戻り、 **`autoSetup`** を選択して実行。これだけで全日程のシートが自動生成されます。
+5.  **Deploy as Web App**:
     -   Deploy > New Deployment > Web App.
     -   Execute as: `Me`.
     -   Who has access: `Anyone`.
