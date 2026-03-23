@@ -20,7 +20,7 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
         <div className="flex items-start gap-4">
           <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0" />
           <div>
-            <h3 className="text-lg font-bold tracking-wide mb-2 uppercase">Exclusive Reward</h3>
+            <h3 className="text-lg font-bold tracking-wide mb-2 uppercase">予約特典</h3>
             <p className="text-sub text-sm leading-relaxed max-w-md">
               {config.RewardText}
             </p>
@@ -34,7 +34,7 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
 
       {/* Caution Box */}
       <section className="bg-[#F8F8F8] p-6 rounded-lg">
-        <div className="text-[10px] text-sub uppercase tracking-widest mb-3 font-bold">Important Notice</div>
+        <div className="text-[10px] text-sub uppercase tracking-widest mb-3 font-bold">注意事項</div>
         <p className="text-xs text-sub leading-loose whitespace-pre-wrap">
           {config.NoticeText}
         </p>

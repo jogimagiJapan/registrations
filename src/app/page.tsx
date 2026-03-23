@@ -22,7 +22,7 @@ export default function ReservationPage() {
     email: '',
     emailConfirm: '',
     peopleCount: '1',
-    item: 'T-Shirt',
+    item: '',
     time: ''
   });
 

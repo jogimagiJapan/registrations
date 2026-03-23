@@ -23,7 +23,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
   return (
     <div className="space-y-12 animate-fade-in">
       <div className="space-y-6">
-        <h3 className="text-2xl font-bold tracking-widest text-main uppercase">Select Date & Time</h3>
+        <h3 className="text-2xl font-bold tracking-widest text-main uppercase">予約日時を選択</h3>
         
         {/* Minimal Tabs */}
         <div className="flex gap-8 border-b border-[#F1F1F1]">
@@ -56,6 +56,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
           slots.map(slot => (
             <button
               key={slot.time}
+              disabled={!slot.available}
               onClick={() => onSelectSlot(slot.time, slot.available)}
               className={`flex flex-col items-center justify-center p-6 border transition-all duration-300 ${
                 slot.available
@@ -64,7 +65,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
               }`}
             >
               <span className="text-xl font-medium mb-1">{slot.time}</span>
-              <span className="text-xs font-bold tracking-widest">{slot.available ? '◎' : '当日'}</span>
+              <span className="text-xs font-bold tracking-widest">{slot.available ? '◎' : '当日枠あり（選択不可）'}</span>
             </button>
           ))
         )}

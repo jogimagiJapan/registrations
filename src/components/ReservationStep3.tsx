@@ -10,7 +10,7 @@ interface Step3Props {
 export const ReservationStep3: React.FC<Step3Props> = ({ onReset, email }) => {
   return (
     <div className="text-center py-20 space-y-8 animate-fade-in">
-      <h2 className="text-3xl font-bold tracking-widest text-main mb-4 uppercase">Reserved.</h2>
+      <h2 className="text-3xl font-bold tracking-widest text-main mb-4 uppercase">予約完了</h2>
       <div className="h-px w-12 bg-main mx-auto mb-8" />
       <div className="space-y-4 max-w-sm mx-auto">
         <p className="font-noto text-sm leading-relaxed text-sub">
@@ -25,7 +25,7 @@ export const ReservationStep3: React.FC<Step3Props> = ({ onReset, email }) => {
         onClick={onReset}
         className="mt-12 py-4 px-12 border border-main rounded-full text-[10px] tracking-widest font-bold hover:bg-main hover:text-white transition-all duration-500 uppercase"
       >
-        Back to Top
+        トップに戻る
       </button>
     </div>
   );
