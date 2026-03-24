@@ -15,6 +15,7 @@ interface Step2Props {
   onPrev: () => void;
   onSubmit: () => void;
   isSubmitting: boolean;
+  selectedDate: string;
 }
 
 export const ReservationStep2: React.FC<Step2Props> = ({
@@ -22,7 +23,8 @@ export const ReservationStep2: React.FC<Step2Props> = ({
   setFormData,
   onPrev,
   onSubmit,
-  isSubmitting
+  isSubmitting,
+  selectedDate
 }) => {
   const [emailError, setEmailError] = useState(false);
   const [nameError, setNameError] = useState(false);
@@ -43,10 +45,10 @@ export const ReservationStep2: React.FC<Step2Props> = ({
     <div className="space-y-12 animate-fade-in">
       <div className="flex justify-between items-baseline border-b border-[#F1F1F1] pb-6">
         <h3 className="text-2xl font-bold tracking-widest uppercase text-main">ご予約者情報の入力</h3>
-        <span className="text-sm font-bold italic text-sub">{formData.time} 予約枠</span>
+        <span className="text-sm font-bold italic text-sub">{selectedDate} / {formData.time} 予約枠</span>
       </div>
 
-      <form onSubmit={(e) => { e.preventDefault(); if(!emailError && !nameError) onSubmit(); }} className="space-y-10">
+      <form onSubmit={(e) => { e.preventDefault(); if (!emailError && !nameError) onSubmit(); }} className="space-y-10">
         {/* Name */}
         <div className="space-y-2">
           <label className="text-[10px] text-sub uppercase tracking-widest font-bold">お名前（カタカナ）</label>
@@ -61,9 +63,8 @@ export const ReservationStep2: React.FC<Step2Props> = ({
               // Simple Katakana + space check
               setNameError(val !== "" && !/^[ァ-ヶー\s]+$/.test(val));
             }}
-            className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-[#BBB] ${
-              nameError ? 'border-[#C88888] text-[#C88888]' : 'border-[#E5E5E5] focus:border-main'
-            }`}
+            className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-[#BBB] ${nameError ? 'border-[#C88888] text-[#C88888]' : 'border-[#E5E5E5] focus:border-main'
+              }`}
           />
           {nameError && <p className="text-[10px] text-[#C88888] font-bold mt-1">全角カタカナで入力してください</p>}
         </div>
@@ -89,9 +90,8 @@ export const ReservationStep2: React.FC<Step2Props> = ({
               placeholder="上記と同じアドレスを入力"
               value={formData.emailConfirm}
               onChange={e => setFormData({ ...formData, emailConfirm: e.target.value })}
-              className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-[#BBB] ${
-                emailError ? 'border-[#C88888] text-[#C88888]' : 'border-[#E5E5E5] focus:border-main'
-              }`}
+              className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-[#BBB] ${emailError ? 'border-[#C88888] text-[#C88888]' : 'border-[#E5E5E5] focus:border-main'
+                }`}
             />
             {emailError && <p className="text-[10px] text-[#C88888] font-bold mt-1">メールアドレスが一致しません</p>}
           </div>
@@ -106,22 +106,21 @@ export const ReservationStep2: React.FC<Step2Props> = ({
                 key={num}
                 type="button"
                 onClick={() => handlePeopleChange(num)}
-                className={`flex-1 py-3 text-sm font-medium transition-all ${
-                  formData.peopleCount === num 
-                    ? 'bg-[#1A1A1A] text-white' 
-                    : 'bg-white text-main hover:bg-[#F8F8F8]'
-                }`}
+                className={`flex-1 py-3 text-sm font-medium transition-all ${formData.peopleCount === num
+                  ? 'bg-[#1A1A1A] text-white'
+                  : 'bg-white text-main hover:bg-[#F8F8F8]'
+                  }`}
               >
                 {num}名
               </button>
             ))}
           </div>
-          <p className="text-[10px] text-sub italic">※ 1〜3名まで。4名以上の場合は別枠で再予約いただくか、お問い合わせください。</p>
+          <p className="text-[10px] text-sub italic">※ 体験される方の人数を選択してください。1〜3名まで選択可能です。4名以上の場合は別枠で追加予約してください。</p>
         </div>
 
         {/* Item Selection */}
         <div className="space-y-2">
-          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">アイテム（自由入力）</label>
+          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
           <input
             type="text"
             placeholder="例：Tシャツ M"

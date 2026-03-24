@@ -7,6 +7,16 @@ import { ReservationStep3 } from '@/components/ReservationStep3';
 import { BrandAssets } from '@/components/BrandAssets';
 import { getSlots, reserveSlot, Slot, Config } from '@/lib/api';
 
+const formatDateWithDay = (dateStr: string) => {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  return new Intl.DateTimeFormat('ja-JP', {
+    month: 'numeric',
+    day: 'numeric',
+    weekday: 'short',
+  }).format(date);
+};
+
 export default function ReservationPage() {
   const [step, setStep] = useState(1);
   const [config, setConfig] = useState<Config | null>(null);
@@ -112,7 +122,7 @@ export default function ReservationPage() {
         {/* Header / Hero */}
         <header className="text-center space-y-8 pb-12 border-b border-[#F1F1F1]">
           <div>
-            <h1 className="text-3xl md:text-4xl tracking-widest-extra uppercase mb-4 animate-fade-in font-bold">
+            <h1 className="text-3xl md:text-4xl tracking-widest-extra mb-4 animate-fade-in font-bold">
               {config?.EventName || "SEW THE SOUND"}
             </h1>
             <p className="font-noto text-sm tracking-[0.2em] text-[#666666] leading-relaxed">
@@ -145,6 +155,7 @@ export default function ReservationPage() {
               onPrev={() => setStep(1)}
               onSubmit={handleSubmit}
               isSubmitting={isSubmitting}
+              selectedDate={selectedDate}
             />
           )}
 
