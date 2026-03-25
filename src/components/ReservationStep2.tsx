@@ -48,7 +48,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
         <div className="text-right flex flex-col items-end gap-1">
           <span className="text-[10px] font-bold text-sub tracking-widest uppercase">Selected Time</span>
           <span className="text-sm font-bold italic text-[#C88888]">{selectedDate}</span>
-          <span className="text-sm font-bold italic text-main">{formData.time} 〜</span>
+          <span className="text-lg font-bold italic text-main">{formData.time} 〜</span>
         </div>
       </div>
 
