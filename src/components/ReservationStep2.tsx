@@ -46,9 +46,9 @@ export const ReservationStep2: React.FC<Step2Props> = ({
       <div className="flex justify-between items-start border-b border-[#F1F1F1] pb-6">
         <h3 className="text-2xl font-bold tracking-widest uppercase text-main">ご予約情報の入力</h3>
         <div className="text-right flex flex-col items-end gap-1">
-          <span className="text-[10px] font-bold text-sub tracking-widest uppercase">Selected Slot</span>
-          <span className="text-sm font-bold italic text-main">{selectedDate}</span>
-          <span className="text-sm font-bold italic text-sub">{formData.time} 〜</span>
+          <span className="text-[10px] font-bold text-sub tracking-widest uppercase">Selected Time</span>
+          <span className="text-sm font-bold italic text-[#C88888]">{selectedDate}</span>
+          <span className="text-sm font-bold italic text-main">{formData.time} 〜</span>
         </div>
       </div>
 
@@ -119,7 +119,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
               </button>
             ))}
           </div>
-          <p className="text-[10px] text-sub italic">※ 体験される方の人数を選択してください。1〜3名まで選択可能です。4名以上の場合は別枠で追加予約してください。</p>
+          <p className="text-[10px] text-sub italic">※ 体験される方の人数を選択してください。4名以上の場合は別枠で追加予約してください。<br />お連れ様もお気軽にお越しください。</p>
         </div>
 
         {/* Item Selection */}
@@ -127,7 +127,8 @@ export const ReservationStep2: React.FC<Step2Props> = ({
           <div className="space-y-1">
             <label className="text-[10px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
             <p className="text-[10px] text-sub leading-relaxed italic opacity-80">
-              ※ 持ち込みアイテムの場合は種類（例：Tシャツ、トートバッグなど）と素材（綿100%など）をご記入ください。
+              ※Tシャツ、キッズT、ロンT、トートバッグ、ポーチなどをご用意しております。ご希望のアイテムやサイズがお決まりでしたらご記入ください。
+              <br /> ※ 持ち込みアイテムの場合は種類（例：Tシャツ、トートバッグなど）と素材（綿100%など）をわかる範囲でご記入ください。
             </p>
           </div>
           <input

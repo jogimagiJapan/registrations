@@ -25,9 +25,9 @@ export const ReservationStep1: React.FC<Step1Props> = ({
       <div className="space-y-4">
         <h3 className="text-2xl font-bold tracking-widest text-main uppercase">予約日時を選択</h3>
         <p className="text-[10px] text-sub font-medium leading-relaxed">
-          ※ 各回の所要時間は約60分です。開始10分前にお越しください。
+          ※ 各回の所要時間は約20分です。ページ下の注意事項をご確認の上、ご希望の日時を選択してください。
         </p>
-        
+
         {/* Minimal Tabs */}
         <div className="flex gap-8 border-b border-[#F1F1F1] overflow-x-auto whitespace-nowrap scrollbar-hide">
           {dates.map(date => {
@@ -37,11 +37,10 @@ export const ReservationStep1: React.FC<Step1Props> = ({
               <button
                 key={date}
                 onClick={() => setSelectedDate(date)}
-                className={`pb-4 text-sm font-medium transition-all relative ${
-                  selectedDate === date 
-                  ? 'text-main' 
-                  : 'text-sub hover:text-main'
-                }`}
+                className={`pb-4 text-sm font-medium transition-all relative ${selectedDate === date
+                    ? 'text-main'
+                    : 'text-sub hover:text-main'
+                  }`}
               >
                 {date} ({dayOfWeek})
                 {selectedDate === date && (
@@ -70,11 +69,10 @@ export const ReservationStep1: React.FC<Step1Props> = ({
               key={slot.time}
               disabled={!slot.available}
               onClick={() => onSelectSlot(slot.time, slot.available)}
-              className={`flex flex-col items-center justify-center p-6 border transition-all duration-300 ${
-                slot.available
-                  ? 'border-[#E5E5E5] bg-transparent hover:bg-[#1A1A1A] hover:text-white cursor-pointer'
+              className={`flex flex-col items-center justify-center p-6 border transition-all duration-300 ${slot.available
+                  ? 'border-[#C88888] bg-transparent hover:bg-[#1A1A1A] hover:text-white cursor-pointer'
                   : 'bg-[#F1F1F1] border-transparent text-sub cursor-not-allowed opacity-60'
-              }`}
+                }`}
             >
               <span className="text-xl font-medium mb-1">{slot.time} 〜</span>
               <span className={`text-[10px] font-bold tracking-widest leading-none ${slot.available ? 'text-[#1A1A1A] group-hover:text-white' : ''}`}>
