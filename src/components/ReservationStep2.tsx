@@ -43,9 +43,13 @@ export const ReservationStep2: React.FC<Step2Props> = ({
 
   return (
     <div className="space-y-12 animate-fade-in">
-      <div className="flex justify-between items-baseline border-b border-[#F1F1F1] pb-6">
-        <h3 className="text-2xl font-bold tracking-widest uppercase text-main">ご予約者情報の入力</h3>
-        <span className="text-sm font-bold italic text-sub">{selectedDate} / {formData.time} 予約枠</span>
+      <div className="flex justify-between items-start border-b border-[#F1F1F1] pb-6">
+        <h3 className="text-2xl font-bold tracking-widest uppercase text-main">ご予約情報の入力</h3>
+        <div className="text-right flex flex-col items-end gap-1">
+          <span className="text-[10px] font-bold text-sub tracking-widest uppercase">Selected Slot</span>
+          <span className="text-sm font-bold italic text-main">{selectedDate}</span>
+          <span className="text-sm font-bold italic text-sub">{formData.time} 〜</span>
+        </div>
       </div>
 
       <form onSubmit={(e) => { e.preventDefault(); if (!emailError && !nameError) onSubmit(); }} className="space-y-10">
@@ -99,7 +103,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
 
         {/* People Count (Segmented Switch) */}
         <div className="space-y-4">
-          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">予約人数</label>
+          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">体験人数</label>
           <div className="flex border border-[#E5E5E5] rounded-full overflow-hidden w-full max-w-xs">
             {['1', '2', '3'].map((num) => (
               <button
@@ -119,8 +123,13 @@ export const ReservationStep2: React.FC<Step2Props> = ({
         </div>
 
         {/* Item Selection */}
-        <div className="space-y-2">
-          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <label className="text-[10px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
+            <p className="text-[10px] text-sub leading-relaxed italic opacity-80">
+              ※ 持ち込みアイテムの場合は種類（例：Tシャツ、トートバッグなど）と素材（綿100%など）をご記入ください。
+            </p>
+          </div>
           <input
             type="text"
             placeholder="例：Tシャツ M"

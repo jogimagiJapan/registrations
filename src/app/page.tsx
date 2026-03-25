@@ -118,9 +118,9 @@ export default function ReservationPage() {
         </div>
       )}
 
-      <div className="max-w-4xl mx-auto space-y-24">
+      <div className="max-w-4xl mx-auto space-y-12">
         {/* Header / Hero */}
-        <header className="text-center space-y-8 pb-12 border-b border-[#F1F1F1]">
+        <header className="text-center space-y-8 pb-8 border-b border-[#F1F1F1]">
           <div>
             <h1 className="text-3xl md:text-4xl tracking-widest-extra mb-4 animate-fade-in font-bold">
               {config?.EventName || "SEW THE SOUND"}
@@ -133,7 +133,7 @@ export default function ReservationPage() {
         </header>
 
         {/* Content Area */}
-        <div className="space-y-24">
+        <div className="space-y-12">
           {step === 1 && (
             <>
               <ReservationStep1

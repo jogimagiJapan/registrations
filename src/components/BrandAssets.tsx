@@ -16,11 +16,17 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
   return (
     <div className="space-y-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
       {/* Promotion Card */}
-      <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#F1F1F1] space-y-6">
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0" />
+      <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#F1F1F1] space-y-6 relative overflow-hidden group hover:shadow-md transition-all duration-700">
+        {/* Subtle Accent Background */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDFDFB] rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000 ease-out pointer-events-none opacity-50" />
+        
+        <div className="flex items-start gap-4 relative z-10">
+          <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0 animate-pulse" />
           <div>
-            <h3 className="text-lg font-bold tracking-wide mb-2 uppercase">予約特典</h3>
+            <h3 className="text-lg font-bold tracking-wide mb-2 uppercase flex items-center gap-3">
+              予約特典
+              <span className="text-[8px] bg-[#C88888]/10 text-[#C88888] px-2 py-0.5 rounded-full tracking-widest font-bold">Recommended</span>
+            </h3>
             <p className="text-sub text-sm leading-relaxed max-w-2xl">
               {config.RewardText}
             </p>

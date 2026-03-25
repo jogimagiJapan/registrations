@@ -21,9 +21,12 @@ export const ReservationStep1: React.FC<Step1Props> = ({
   isLoading
 }) => {
   return (
-    <div className="space-y-12 animate-fade-in">
-      <div className="space-y-6">
+    <div className="space-y-10 animate-fade-in">
+      <div className="space-y-4">
         <h3 className="text-2xl font-bold tracking-widest text-main uppercase">予約日時を選択</h3>
+        <p className="text-[10px] text-sub font-medium leading-relaxed">
+          ※ 各回の所要時間は約60分です。開始10分前にお越しください。
+        </p>
         
         {/* Minimal Tabs */}
         <div className="flex gap-8 border-b border-[#F1F1F1] overflow-x-auto whitespace-nowrap scrollbar-hide">
@@ -73,9 +76,9 @@ export const ReservationStep1: React.FC<Step1Props> = ({
                   : 'bg-[#F1F1F1] border-transparent text-sub cursor-not-allowed opacity-60'
               }`}
             >
-              <span className="text-xl font-medium mb-1">{slot.time}</span>
-              <span className="text-[10px] font-bold tracking-widest leading-none">
-                {slot.statusText || (slot.available ? '◎' : '当日枠あり（選択不可）')}
+              <span className="text-xl font-medium mb-1">{slot.time} 〜</span>
+              <span className={`text-[10px] font-bold tracking-widest leading-none ${slot.available ? 'text-[#1A1A1A] group-hover:text-white' : ''}`}>
+                {slot.statusText || (slot.available ? '◎ 予約可能！' : '当日枠あり（選択不可）')}
               </span>
             </button>
           ))}
