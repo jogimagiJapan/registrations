@@ -108,11 +108,11 @@ export default function ReservationPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FDFDFB] text-[#1A1A1A] font-sans px-6 md:px-12 py-10 md:py-20 animate-fade-in">
+    <main className="min-h-screen bg-[#FDFDFB] text-main font-sans px-6 md:px-12 py-10 md:py-20 animate-fade-in">
       {/* Toast Notification */}
       {toast && (
         <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
-          <div className="bg-[#1A1A1A] text-white px-10 py-4 rounded-full shadow-2xl font-bold tracking-widest text-xs">
+          <div className="bg-main text-white px-10 py-4 rounded-full shadow-2xl font-bold tracking-widest text-xs">
             {toast}
           </div>
         </div>

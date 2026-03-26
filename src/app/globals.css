@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-main: #1A1A1A;
+  --color-main: #2c3e50;
   --color-sub: #666666;
   --color-rose: #C88888;
   --color-border-main: #E5E5E5;
@@ -12,7 +12,7 @@
 
 :root {
   --background: #FDFDFB;
-  --foreground: #1A1A1A;
+  --foreground: #2c3e50;
 }
 
 body {

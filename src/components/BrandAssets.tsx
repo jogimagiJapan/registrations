@@ -17,14 +17,14 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
     <div className="space-y-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
       {/* Plan Link Card */}
       <section>
-        <a 
-          href="/plan_sts.html" 
-          className="group bg-[#1A1A1A] p-8 rounded-2xl flex items-center justify-between text-white transition-all duration-500 hover:bg-[#2A2A2A] shadow-xl"
+        <a
+          href="/plan_sts.html"
+          className="group bg-main p-8 rounded-2xl flex items-center justify-between text-white transition-all duration-500 hover:opacity-90 shadow-xl"
         >
           <div className="space-y-2">
-            <div className="text-[10px] text-[#A1A1A1] uppercase tracking-[0.3em] font-bold">Menu & Fee</div>
-            <div className="text-2xl font-bold tracking-widest">体験プラン・料金詳細</div>
-            <p className="text-[10px] text-[#888] italic">刺繍アイテムや料金体系をご確認いただけます</p>
+            <div className="text-[10px] text-[#A1A1A1] uppercase tracking-[0.3em] font-bold">Plan & Item</div>
+            <div className="text-2xl font-bold tracking-widest">体験プラン・アイテム</div>
+            <p className="text-[10px] text-[#888] italic">価格や刺繍アイテムをご確認いただけます</p>
           </div>
           <div className="w-12 h-12 rounded-full border border-[#333] flex items-center justify-center group-hover:border-white transition-colors">
             <span className="text-xl">→</span>
@@ -41,7 +41,7 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
           <div className="w-2 h-2 rounded-full bg-[#C88888] mt-2 shrink-0 animate-pulse" />
           <div>
             <h3 className="text-lg font-bold tracking-wide mb-2 uppercase flex items-center gap-3">
-              予約特典
+              ご予約特典
               <span className="text-[8px] bg-[#C88888]/10 text-[#C88888] px-2 py-0.5 rounded-full tracking-widest font-bold">EXCLUSIVE GIFT</span>
             </h3>
             <p className="text-sub text-sm leading-relaxed max-w-2xl">
