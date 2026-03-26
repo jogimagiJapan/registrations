@@ -70,7 +70,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
               disabled={!slot.available}
               onClick={() => onSelectSlot(slot.time, slot.available)}
               className={`flex flex-col items-center justify-center p-6 border rounded-xl transition-all duration-300 ${slot.available
-                ? 'border-[#C88888] bg-transparent hover:bg-main hover:text-white cursor-pointer'
+                ? 'border-[#d4a373] bg-transparent hover:bg-main hover:text-white cursor-pointer'
                 : 'bg-[#F1F1F1] border-transparent text-sub cursor-not-allowed opacity-60'
                 }`}
             >
@@ -87,7 +87,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
       <div className="pt-12 border-t border-[#F1F1F1] mt-12 space-y-8">
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row md:items-start gap-4">
-            <span className="shrink-0 text-sm font-bold text-main py-1 px-3 border border-main rounded-full inline-block text-center">◎ 予約可能１</span>
+            <span className="shrink-0 text-sm font-bold text-main py-1 px-3 border border-main rounded-full inline-block text-center"> 予約可能 </span>
             <p className="text-sm text-sub leading-relaxed">3名様まで同時に体験予約いただけます。ご家族やご友人との参加も可能です。お連れ様は何名でもご一緒にご参加いただけます。</p>
           </div>
           <div className="flex flex-col md:flex-row md:items-start gap-4">
@@ -95,7 +95,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
             <p className="text-sm text-sub leading-relaxed">事前予約は締切となりましたが、当日先着順でのご案内が可能です。直接会場までお越しください。</p>
           </div>
           <div className="flex flex-col md:flex-row md:items-start gap-4">
-            <span className="shrink-0 text-sm font-bold text-[#CCC] py-1 px-3 border border-[#EEE] rounded-full inline-block text-center bg-[#FAFAFA]">受付終了</span>
+            <span className="shrink-0 text-sm font-bold text-[#CCC] py-1 px-3 border border-[#EEE] rounded-full inline-block text-center bg-[#FAFAFA]"> 受付終了 </span>
             <p className="text-sm text-sub leading-relaxed">満席のため受付を終了しました。空席情報はInstagramにて随時更新いたします。</p>
           </div>
         </div>

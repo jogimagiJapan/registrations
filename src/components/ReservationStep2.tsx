@@ -47,7 +47,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
         <h3 className="text-2xl font-bold tracking-widest uppercase text-main">ご予約情報の入力</h3>
         <div className="text-right flex flex-col items-end gap-1">
           <span className="text-[10px] font-bold text-sub tracking-widest uppercase">Selected Time</span>
-          <span className="text-sm font-bold italic text-[#C88888]">{selectedDate}</span>
+          <span className="text-sm font-bold italic text-[#d4a373]">{selectedDate}</span>
           <span className="text-lg font-bold italic text-main">{formData.time} 〜</span>
         </div>
       </div>
@@ -110,10 +110,11 @@ export const ReservationStep2: React.FC<Step2Props> = ({
                 key={num}
                 type="button"
                 onClick={() => handlePeopleChange(num)}
-                className={`flex-1 py-3 text-sm font-medium transition-all ${formData.peopleCount === num
-                  ? 'bg-[#1A1A1A] text-white'
-                  : 'bg-white text-main hover:bg-[#F8F8F8]'
-                  }`}
+                className={`flex-1 py-3 text-xs font-bold transition-all ${
+                  formData.peopleCount === num 
+                  ? 'bg-main text-white' 
+                  : 'bg-transparent text-sub hover:bg-main/5'
+                }`}
               >
                 {num}名
               </button>
@@ -143,10 +144,10 @@ export const ReservationStep2: React.FC<Step2Props> = ({
         {/* Actions */}
         <div className="flex flex-col gap-4 pt-10">
           <button
-            type="submit"
-            disabled={isSubmitting || emailError || nameError}
-            className="w-full py-5 bg-[#1A1A1A] text-white rounded-full font-bold tracking-widest text-sm hover:bg-[#333] transition-all flex items-center justify-center gap-3 disabled:bg-gray-300"
-          >
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full py-6 bg-main border border-main text-white rounded-full text-xs tracking-widest font-bold hover:bg-transparent hover:text-main transition-all duration-500 uppercase disabled:opacity-50"
+        >
             {isSubmitting ? (
               <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
             ) : '予約を確定する'}
