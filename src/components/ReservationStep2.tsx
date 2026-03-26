@@ -55,7 +55,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
       <form onSubmit={(e) => { e.preventDefault(); if (!emailError && !nameError) onSubmit(); }} className="space-y-10">
         {/* Name */}
         <div className="space-y-2">
-          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">お名前（カタカナ）</label>
+          <label className="text-[20px] text-sub uppercase tracking-widest font-bold">お名前（カタカナ）</label>
           <input
             type="text"
             required
@@ -76,7 +76,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
         {/* Email */}
         <div className="grid md:grid-cols-2 gap-10">
           <div className="space-y-2">
-            <label className="text-[10px] text-sub uppercase tracking-widest font-bold">メールアドレス</label>
+            <label className="text-[20px] text-sub uppercase tracking-widest font-bold">メールアドレス</label>
             <input
               type="email"
               required
@@ -87,7 +87,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] text-sub uppercase tracking-widest font-bold">メールアドレス（確認）</label>
+            <label className="text-[20px] text-sub uppercase tracking-widest font-bold">メールアドレス（確認）</label>
             <input
               type="email"
               required
@@ -103,7 +103,7 @@ export const ReservationStep2: React.FC<Step2Props> = ({
 
         {/* People Count (Segmented Switch) */}
         <div className="space-y-4">
-          <label className="text-[10px] text-sub uppercase tracking-widest font-bold">体験人数</label>
+          <label className="text-[20px] text-sub uppercase tracking-widest font-bold">体験人数</label>
           <div className="flex border border-[#E5E5E5] rounded-full overflow-hidden w-full max-w-xs">
             {['1', '2', '3'].map((num) => (
               <button
@@ -119,14 +119,14 @@ export const ReservationStep2: React.FC<Step2Props> = ({
               </button>
             ))}
           </div>
-          <p className="text-[10px] text-sub italic">※ 体験される方の人数を選択してください。4名以上の場合は別枠で追加予約してください。<br />お連れ様もお気軽にお越しください。</p>
+          <p className="text-[15px] text-sub italic">※ 体験される方の人数を選択してください。4名以上の場合は別枠で追加予約してください。<br />お連れ様もお気軽にお越しください。</p>
         </div>
 
         {/* Item Selection */}
         <div className="space-y-4">
           <div className="space-y-1">
-            <label className="text-[10px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
-            <p className="text-[10px] text-sub leading-relaxed italic opacity-80">
+            <label className="text-[20px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
+            <p className="text-[15px] text-sub leading-relaxed italic opacity-80">
               ※Tシャツ、キッズT、ロンT、トートバッグ、ポーチなどをご用意しております。ご希望のアイテムやサイズがお決まりでしたらご記入ください。
               <br /> ※ 持ち込みアイテムの場合は種類（例：Tシャツ、トートバッグなど）と素材（綿100%など）をわかる範囲でご記入ください。
             </p>

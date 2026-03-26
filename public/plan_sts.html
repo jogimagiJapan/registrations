@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEW THE SOUND - Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00568f;
+            --lite-bg: #f8f8f8;
+            --text-main: #333;
+            --text-sub: #666;
+            --border-color: #e0e0e0;
+            /* 波形の色 */
+            --wave-lite: #00568f; 
+            --wave-std-1: #00568f; /* 波形1: ブルー */
+            --wave-std-2: #a6611a; /* 波形2: ブラウン */
+            --wave-std-3: #c0ca33; /* 波形3: イエローグリーン */
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            letter-spacing: 0.3em;
+            color: #bbb;
+            font-weight: 300;
+            margin-bottom: 30px;
+            font-size: 1.5rem; /* 洗練された印象のため少し調整 */
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .experience-fee {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .experience-fee span {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        .step-section {
+            margin-bottom: 60px;
+        }
+
+        .step-label {
+            background: #333;
+            color: #fff;
+            padding: 3px 18px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title span {
+            font-size: 0.95rem;
+            font-weight: normal;
+            color: var(--text-sub);
+            margin-left: 15px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .plan-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px 20px 30px;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .plan-card.recommended {
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0,86,143,0.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-blue);
+            color: #fff;
+            padding: 3px 20px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-name {
+            font-size: 1.7rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .plan-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .wave-container {
+            background-color: var(--lite-bg);
+            height: 120px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0 15px;
+        }
+
+        .waveform-svg {
+            width: 100%;
+            height: 60%;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            text-align: left;
+            display: inline-block;
+            font-weight: 300;
+        }
+
+        .features li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 1.2em;
+        }
+
+        .features li::before {
+            content: "・";
+            position: absolute;
+            left: 0;
+            color: #ccc;
+        }
+
+        .item-list-container {
+            margin-bottom: 30px;
+        }
+
+        .item-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .item-list td {
+            padding: 16px 0;
+            border-bottom: 1px dotted #bbb;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .item-list tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 注意事項のスタイル */
+        .notes-container {
+            margin-bottom: 50px;
+            background-color: #fcfcfc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .notes-title {
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .notes-list {
+            margin: 0;
+            padding-left: 1.2em;
+            list-style-type: none;
+        }
+
+        .notes-list li {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+            margin-bottom: 5px;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .notes-list li::before {
+            content: "※";
+            position: absolute;
+            left: -1.2em;
+            color: #999;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+            font-weight: 300;
+        }
+
+        /* スマホ・レスポンシブ表示 */
+        @media (max-width: 650px) {
+            .plans-grid {
+                grid-template-columns: 1fr 1fr; /* 横並びを維持 */
+                gap: 10px; /* 隙間を狭く調整 */
+            }
+            .plan-card {
+                padding: 30px 10px 20px; /* カード内の余白を調整 */
+            }
+            .plan-name {
+                font-size: 1.3rem; /* 文字サイズを少し小さく */
+            }
+            .price {
+                font-size: 1.5rem;
+            }
+            .footer-info {
+                flex-direction: column; /* 縦並びに変更 */
+                gap: 10px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-title span {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo">SEW THE SOUND</div>
+        <h1>記憶を纏う、音の刺繍</h1>
+        <p class="subtitle">あなたの声を、世界に一つのデザインとして刻む。</p>
+        <p class="experience-fee">体験料 ¥2,000〜 <span>(持ち込みOK)</span></p>
+    </header>
+
+    <main>
+        <section class="step-section">
+            <div class="step-label">STEP 1</div>
+            <h2 class="section-title">PLAN <span>刺繍プランを選ぶ</span></h2>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-name">Lite</div>
+                    <div class="plan-desc">声をシンプルに刻む</div>
+                    
+                    <div class="wave-container">
+                        <svg class="waveform-svg" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
+                            <path d="M0,200 L16,193 L33,217 L50,173 L66,250 L83,133 L100,283 L116,140 L133,233 L150,183 L166,200 L183,240 L200,116 L216,300 L233,150 L250,216 L266,193 L283,200 L300,266 L316,83 L333,350 L350,133 L366,233 L383,183 L400,200 L416,226 L433,150 L450,266 L466,166 L483,216 L500,200 L516,260 L533,66 L550,366 L566,116 L583,233 L600,190 L616,200 L633,250 L650,100 L666,316 L683,150 L700,226 L716,186 L733,200 L750,233 L766,133 L783,283 L800,160 L816,220 L833,200 L850,250 L866,83 L883,333 L900,133 L916,233 L933,186 L950,200 L966,216 L983,193 L1000,200" 
+                                  fill="none" stroke="var(--wave-lite)" stroke-width="6"/>
+                        </svg>
+                    </div>
+
+                    <div class="price">¥2,000</div>
+                    <ul class="features">
+                        <li>音の波形 1本</li>
+                        <li>ミニマルデザイン</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card recommended">
+                    <div class="badge">RECOMMENDED</div>
+                    <div class="plan-name">Standard</div>
+                    <div class="plan-desc">記憶をすべて保存する</div>
+
+                    <div class="wave-container">
+                        <svg class="waveform-svg" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
+                            <path d="M0,200 L16,193 L33,217 L50,173 L66,250 L83,133 L100,283 L116,140 L133,233 L150,183 L166,200 L183,240 L200,116 L216,300 L233,150 L250,216 L266,193 L283,200 L300,266 L316,83 L333,350 L350,133 L366,233 L383,183 L400,200 L416,226 L433,150 L450,266 L466,166 L483,216 L500,200 L516,260 L533,66 L550,366 L566,116 L583,233 L600,190 L616,200 L633,250 L650,100 L666,316 L683,150 L700,226 L716,186 L733,200 L750,233 L766,133 L783,283 L800,160 L816,220 L833,200 L850,250 L866,83 L883,333 L900,133 L916,233 L933,186 L950,200 L966,216 L983,193 L1000,200" 
+                                  fill="none" stroke="var(--wave-std-1)" stroke-width="6"/>
+                            <path d="M0,200 L14.7,200 L29.4,191 L44.1,223 L58.8,310 L73.5,333 L88.2,374 L102.9,214 L117.6,266 L132.3,234 L147.1,225 L161.8,240 L176.5,178 L191.2,175 L205.9,150 L220.6,108 L235.3,195 L250.1,194 L264.8,245 L279.5,314 L294.2,244 L308.9,195 L323.6,254 L338.3,293 L353.1,241 L367.8,172 L382.5,157 L397.2,204 L411.9,268 L426.6,243 L441.3,277 L456.1,162 L470.8,35 L485.5,58 L500.2,13 L514.9,173 L529.6,311 L544.3,290 L559.1,326 L573.8,301 L588.5,274 L603.2,185 L617.9,248 L632.6,206 L647.3,222 L662.1,260 L676.8,214 L691.5,235 L706.2,298 L720.9,400 L735.6,346 L750.3,371 L765.1,274 L780,224 L794.5,264 L809.2,192 L823.9,134 L838.6,104 L853.3,121 L868,80 L882.7,163 L897.5,251 L912.2,206 L926.9,235 L941.6,170 L956.3,189 L971,189 L1000,189" 
+                                  fill="none" stroke="var(--wave-std-2)" stroke-width="6"/>
+                            <path d="M0,250 L14.3,250 L28.6,250 L42.9,224 L57.1,238 L71.4,221 L85.7,268 L100,257 L114.3,245 L128.6,275 L142.9,233 L157.1,219 L171.4,250 L185.7,208 L200,195 L214.3,165 L228.6,171 L242.9,161 L257.1,195 L271.4,242 L285.7,294 L300,345 L314.3,378 L328.6,396 L342.9,400 L357.1,338 L371.4,320 L385.7,335 L400,358 L414.3,322 L428.6,285 L442.9,292 L457.1,304 L471.4,251 L485.7,243 L500,230 L514.3,242 L528.6,246 L542.9,212 L557.1,195 L571.4,188 L585.7,168 L600,158 L614.3,212 L628.6,241 L642.9,268 L657.1,250 L671.4,265 L685.7,245 L700,231 L714.3,215 L728.6,243 L742.9,216 L757.1,185 L771.4,158 L785.7,159 L800,202 L814.3,250 L828.6,215 L842.9,240 L857.1,245 L871.4,233 L885.7,255 L900,223 L914.3,195 L928.6,220 L942.9,228 L957.1,248 L971.4,250 L1000,250" 
+                                  fill="none" stroke="var(--wave-std-3)" stroke-width="6"/>
+                        </svg>
+                    </div>
+
+                    <div class="price">¥4,000</div>
+                    <ul class="features">
+                        <li>波形 3本重ね</li>
+                        <li>日時/緯度経度入り</li>
+                        <li>フルスペックアート</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="step-section">
+            <div class="step-label">STEP 2</div>
+            <h2 class="section-title">ITEM <span>刺繍するアイテムを選ぶ</span></h2>
+
+            <div class="item-list-container">
+                <table class="item-list">
+                    <tr>
+                        <td class="item-name">持ち込み（お気に入りの私物に）</td>
+                        <td class="item-price">+ ¥0</td>
+                    </tr>
+                    <tr>
+                        <td class="item-name">ポーチ / トートバッグ / キッズT</td>
+                        <td class="item-price">+ ¥500</td>
+                    </tr>
+                    <tr>
+                        <td class="item-name">Tシャツ（大人サイズ）</td>
+                        <td class="item-price">+ ¥1,500</td>
+                    </tr>
+                    <tr>
+                        <td class="item-name">ロンT（大人サイズ）</td>
+                        <td class="item-price">+ ¥2,000</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="notes-container">
+                <p class="notes-title">【お持ち込みに関する注意事項】</p>
+                <ul class="notes-list">
+                    <li>生地の厚みや縫製箇所によっては、刺繍をお断りする場合がございます。</li>
+                    <li>刺繍の可否や可能な位置については、実物を確認してからの判断となります。</li>
+                    <li>裏地があるアイテムは、表地と裏地を一緒に縫い合わせる形となります。</li>
+                    <li>事前に刺繍の可否を確認したい場合は、<strong>InstagramのDM</strong>よりお気軽にご相談ください。</li>
+                </ul>
+            </div>
+
+            <div class="footer-info">
+                <div>所要時間：約15〜20分</div>
+                <div>お支払い：現金 / クレジットカード（タッチ決済）</div>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

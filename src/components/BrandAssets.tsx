@@ -15,6 +15,23 @@ interface BrandAssetsProps {
 export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
   return (
     <div className="space-y-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+      {/* Plan Link Card */}
+      <section>
+        <a 
+          href="/plan_sts.html" 
+          className="group bg-[#1A1A1A] p-8 rounded-2xl flex items-center justify-between text-white transition-all duration-500 hover:bg-[#2A2A2A] shadow-xl"
+        >
+          <div className="space-y-2">
+            <div className="text-[10px] text-[#A1A1A1] uppercase tracking-[0.3em] font-bold">Menu & Fee</div>
+            <div className="text-2xl font-bold tracking-widest">体験プラン・料金詳細</div>
+            <p className="text-[10px] text-[#888] italic">刺繍アイテムや料金体系をご確認いただけます</p>
+          </div>
+          <div className="w-12 h-12 rounded-full border border-[#333] flex items-center justify-center group-hover:border-white transition-colors">
+            <span className="text-xl">→</span>
+          </div>
+        </a>
+      </section>
+
       {/* Promotion Card */}
       <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#F1F1F1] space-y-6 relative overflow-hidden group hover:shadow-md transition-all duration-700">
         {/* Subtle Accent Background */}
@@ -68,8 +85,8 @@ export const BrandAssets: React.FC<BrandAssetsProps> = ({ config }) => {
 
       {/* Caution Box */}
       <section className="bg-transparent border-t border-[#F1F1F1] pt-12">
-        <div className="text-[10px] text-sub uppercase tracking-widest mb-4 font-bold">注意事項</div>
-        <p className="text-xs text-sub leading-loose whitespace-pre-wrap max-w-3xl">
+        <div className="text-[20px] text-sub uppercase tracking-widest mb-4 font-bold">注意事項</div>
+        <p className="text-[15px] text-sub leading-loose whitespace-pre-wrap max-w-3xl">
           {config.NoticeText}
         </p>
       </section>

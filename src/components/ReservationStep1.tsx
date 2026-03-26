@@ -58,7 +58,7 @@ export const ReservationStep1: React.FC<Step1Props> = ({
           <div className="absolute inset-0 bg-[#FDFDFB]/80 z-10 flex items-center justify-center backdrop-blur-sm animate-fade-in">
             <div className="flex flex-col items-center gap-4">
               <div className="w-8 h-8 border-2 border-[#1A1A1A]/20 border-t-[#1A1A1A] rounded-full animate-spin" />
-              <p className="text-[10px] tracking-[0.3em] font-bold text-main uppercase">取得中...</p>
+              <p className="text-[10px] tracking-[0.3em] font-bold text-main uppercase">最新情報を取得中...</p>
             </div>
           </div>
         )}
@@ -80,6 +80,24 @@ export const ReservationStep1: React.FC<Step1Props> = ({
               </span>
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Status Legend */}
+      <div className="pt-12 border-t border-[#F1F1F1] mt-12 space-y-8">
+        <div className="space-y-6">
+          <div className="flex flex-col md:flex-row md:items-start gap-4">
+            <span className="shrink-0 text-sm font-bold text-main py-1 px-3 border border-main rounded-full inline-block text-center">◎ 予約可</span>
+            <p className="text-sm text-sub leading-relaxed">3名様まで同時にご予約いただけます。ご家族やご友人との参加も可能です。</p>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-start gap-4">
+            <span className="shrink-0 text-sm font-bold text-sub py-1 px-3 border border-sub rounded-full inline-block text-center bg-[#F8F8F8]">当日枠あり</span>
+            <p className="text-sm text-sub leading-relaxed">WEB予約は締切となりましたが、当日先着順でのご案内が可能です。直接会場までお越しください。</p>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-start gap-4">
+            <span className="shrink-0 text-sm font-bold text-[#CCC] py-1 px-3 border border-[#EEE] rounded-full inline-block text-center bg-[#FAFAFA]">受付終了</span>
+            <p className="text-sm text-sub leading-relaxed">満席のため受付を終了しました。空席情報はInstagramにて随時更新いたします。</p>
+          </div>
         </div>
       </div>
     </div>
