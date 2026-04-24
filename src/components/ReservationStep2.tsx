@@ -110,24 +110,23 @@ export const ReservationStep2: React.FC<Step2Props> = ({
                 key={num}
                 type="button"
                 onClick={() => handlePeopleChange(num)}
-                className={`flex-1 py-3 text-xs font-bold transition-all ${
-                  formData.peopleCount === num 
-                  ? 'bg-main text-white' 
+                className={`flex-1 py-3 text-xs font-bold transition-all ${formData.peopleCount === num
+                  ? 'bg-main text-white'
                   : 'bg-transparent text-sub hover:bg-main/5'
-                }`}
+                  }`}
               >
                 {num}名
               </button>
             ))}
           </div>
-          <p className="text-[15px] text-sub italic">※ 体験される方の人数を選択してください。4名以上の場合は別枠で追加予約してください。<br />お連れ様もお気軽にお越しください。</p>
+          <p className="text-[15px] text-sub">※ 体験される方の人数を選択してください。4名以上の場合は別枠で追加予約してください。<br />お連れ様もお気軽にお越しください。</p>
         </div>
 
         {/* Item Selection */}
         <div className="space-y-4">
           <div className="space-y-1">
             <label className="text-[20px] text-sub uppercase tracking-widest font-bold">刺繍したいアイテム（自由入力）</label>
-            <p className="text-[15px] text-sub leading-relaxed italic opacity-80">
+            <p className="text-[15px] text-sub leading-relaxed opacity-80">
               ※Tシャツ、キッズT、ロンT、トートバッグ、ポーチなどをご用意しております。ご希望のアイテムやサイズがお決まりでしたらご記入ください。
               <br /> ※ 持ち込みアイテムの場合は種類（例：Tシャツ、トートバッグなど）と素材（綿100%など）をわかる範囲でご記入ください。
             </p>
@@ -144,10 +143,10 @@ export const ReservationStep2: React.FC<Step2Props> = ({
         {/* Actions */}
         <div className="flex flex-col gap-4 pt-10">
           <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full py-6 bg-main border border-main text-white rounded-full text-xs tracking-widest font-bold hover:bg-transparent hover:text-main transition-all duration-500 uppercase disabled:opacity-50"
-        >
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-6 bg-main border border-main text-white rounded-full text-xs tracking-widest font-bold hover:bg-transparent hover:text-main transition-all duration-500 uppercase disabled:opacity-50"
+          >
             {isSubmitting ? (
               <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
             ) : '予約を確定する'}
